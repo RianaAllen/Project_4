@@ -8,62 +8,56 @@ package main;//Riana Franklin Allen
 //build the graph. It should also contain a method that performs a depth-first search of that graph.
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DirectedGraph<T> {
-   public static final int NULL_EDGE = 0;
-   private static final int DEFCAP = 50; //default capacity
-   private int numVertices;
-   private int maxVertices;
-   private T[] vertices;
-   private int[][] edges;
-   private boolean[] marks; //marks[i] is mark for vertices[i]
+
+   private List<T> vertices;
+   private List<List<T>> edges;
+   private List<Boolean> marks; //marks[i] is mark for vertices[i]
 
    public DirectedGraph() {
     // Instantiates a graph with capacity DEFCAP vertices.
-    numVertices = 0;
-    maxVertices = DEFCAP;
-    vertices = (T[]) new Object[DEFCAP];
-    marks = new boolean[DEFCAP];
-    edges = new int[DEFCAP][DEFCAP];
-   }
-
-   public DirectedGraph(int maxV) {
-    // Instantiates a graph with capacity maxV.
-    numVertices = 0;
-    maxVertices = maxV;
-    vertices = (T[]) new Object[maxV];
-    marks = new boolean[maxV];
-    edges = new int[maxV][maxV];
+    vertices = new ArrayList<>();
+    marks = new ArrayList<>();
+    edges = new ArrayList<>();
    }
 
    public void addVertex(T vertex) {
-    // Preconditions:   This graph is not full.
-    //                  vertex is not already in this graph.
-    //                  vertex is not null.
-    //
-    // Adds vertex to this graph.
-    vertices[numVertices] = vertex;
-    for (int index = 0; index < numVertices; index++) {
-     edges[numVertices][index] = NULL_EDGE;
-     edges[index][numVertices] = NULL_EDGE;
-    }
-    numVertices++;
+     vertices.add(vertex);
    }
 
-   private int indexIs(T vertex) {
+   public int rowIndex(T vertex) {
     // Returns the index of vertex in vertices.
-    int index = 0;
-    while (!vertex.equals(vertices[index]))
-     index++;
-    return index;
+    return vertices.indexOf(vertex);
    }
 
-   public void addEdge(T fromVertex, T toVertex, int weight) {
-    // Adds an edge with the specified weight from fromVertex to toVertex.
-    int row;
-    int column;
-    row = indexIs(fromVertex);
-    column = indexIs(toVertex);
-    edges[row][column] = weight;
+   public int columnIndex (T fromVertex, T toVertex){
+       //returns the column of a row
+       int fromIndex  = vertices.indexOf(fromVertex);
+       if (fromIndex != -1){
+           List<T> toEdges = edges.get(fromIndex);
+           return toEdges.indexOf(toVertex);
+       } else {
+           return -1;
+       }
+   }
+
+   public void addEdge(T fromVertex, T toVertex) {
+    // Adds an edge from fromVertex to toVertex.
+    int row = rowIndex(fromVertex);
+    int column = columnIndex(fromVertex, toVertex);
+    if (row == -1){
+        vertices.add(fromVertex);
+        List<T> newEdge = new ArrayList<>();
+        newEdge.add(toVertex);
+        edges.add(newEdge);
+    }
+    if (column == -1){
+        List<T> toEdges = edges.get(row);
+        toEdges.add(toVertex);
+    }
    }
 
   }
