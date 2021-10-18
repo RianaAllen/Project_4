@@ -10,6 +10,7 @@ package main;//Riana Franklin Allen
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DirectedGraph<T> {
 
@@ -17,7 +18,29 @@ public class DirectedGraph<T> {
    private List<List<T>> edges;
    private List<Boolean> marks; //marks[i] is mark for vertices[i]
 
-   public DirectedGraph() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DirectedGraph<?> that = (DirectedGraph<?>) o;
+        return Objects.equals(vertices, that.vertices) && Objects.equals(edges, that.edges);
+    }
+
+    @Override
+    public String toString() {
+        return "DirectedGraph{" +
+                "vertices=" + vertices +
+                ", edges=" + edges +
+                ", marks=" + marks +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(vertices, edges);
+    }
+
+    public DirectedGraph() {
     // Instantiates a graph.
     vertices = new ArrayList<>();
     marks = new ArrayList<>();

@@ -5,20 +5,36 @@ package main;//Riana Franklin Allen
 //the edges to a directed graph that defines these class dependencies.
 
 import javax.swing.*;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.StringTokenizer;
 
 public class Main {
     public Main() throws IOException {
-
         //Allows the user to select the input file from the default directory by using an object of the JFileChooser class.
         JFileChooser jfc = new JFileChooser();
+        File file = jfc.getSelectedFile();
         //int returnValue = jfc.showOpenDialog(null);
-        FileReader fr = new FileReader(jfc.getSelectedFile());
-        int read = fr.read();
-        while (read != -1){
+    }
 
+    public static DirectedGraph<String> fileReader(File file) throws IOException {
+        FileReader fileToRead = new FileReader(file);
+        BufferedReader br = new BufferedReader(fileToRead);
+        String eachLine = br.readLine();
+        DirectedGraph<String> graph = new DirectedGraph();
+        while (eachLine != null) {
+            StringTokenizer tokenLine = new StringTokenizer(eachLine, " ", false);
+            if (tokenLine.hasMoreElements()) {
+                String token = tokenLine.nextToken();
+                String vertex = token;
+                graph.addVertex(vertex);
+                while (tokenLine.hasMoreElements()) {
+                    //    get the next token, add edges
+                    token = tokenLine.nextToken();
+                    graph.addEdge(vertex, token);
+                }
+            }
+            eachLine = br.readLine();
         }
-
+        return graph;
     }
 }
