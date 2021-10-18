@@ -9,6 +9,7 @@ package main;//Riana Franklin Allen
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,7 +17,7 @@ public class DirectedGraph<T> {
 
    private List<T> vertices;
    private List<List<T>> edges;
-   private List<Boolean> marks; //marks[i] is mark for vertices[i]
+   private HashMap<T, Boolean> marks;
 
     @Override
     public boolean equals(Object o) {
@@ -42,20 +43,20 @@ public class DirectedGraph<T> {
 
     public DirectedGraph() {
     // Instantiates a graph.
-    vertices = new ArrayList<>();
-    marks = new ArrayList<>();
-    edges = new ArrayList<>();
+        vertices = new ArrayList<>();
+        edges = new ArrayList<>();
+        marks = new HashMap<>();
    }
 
    public void addVertex(T vertex) {
-     vertices.add(vertex);
+       vertices.add(vertex);
        List<T> newEdge = new ArrayList<>();
        edges.add(newEdge);
    }
 
    public int rowIndex(T vertex) {
-    // Returns the index of vertex in vertices.
-    return vertices.indexOf(vertex);
+        // Returns the index of vertex in vertices.
+        return vertices.indexOf(vertex);
    }
 
    public int columnIndex (T fromVertex, T toVertex){
@@ -85,10 +86,30 @@ public class DirectedGraph<T> {
     }
    }
 
-  }
+
   //Method for depth first search, it should first initialize all the vertices to the undiscovered state and being the search at
   //the vertex that corresponds to the first name in the input file.
 
+    public void depth_first_search (T vertex, DFSActions actions) {
+
+        if (marks.get(vertex)){
+        //perform cycle detected action
+            actions.cycleDetected();
+            return;
+        }
+        actions.addVertex(vertex);
+        marks.put(vertex, true);
+        actions.performDescend();
+        int rowIndex = rowIndex(vertex);
+        edges.size();
+        for (int i = 0; i < edges.size(); i++){
+            T toEdge = edges.get(rowIndex).get(i);
+            depth_first_search(toEdge, actions);
+        }
+        actions.performAscend();
+        marks.put(vertex, false);
+    }
+}
   //Method should allow the main method to display any unreachable classes by examining all the vertices of the graph
   //to see which remain undiscovered.
 

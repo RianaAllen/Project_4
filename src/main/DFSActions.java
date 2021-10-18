@@ -4,36 +4,16 @@ package main;
 // contain 4 method signatures that correspond with the four actions performed in the depth first search: cycle detect
 //process vertex, descend, and ascend.
 public interface DFSActions<T> {
-    boolean isEmpty();
 
-    //returns true if this graph is empty; otherwise returns false
-    boolean isFull();
+    void cycleDetected();
+    //Returns an unmarked vertex if any exist; otherwise returns null
 
-    //returns true if this graph is full; otherwise returns false
     void addVertex(T vertex);
 
-    //Preconditions: This graph is not full
-    //               vertex is not already in this graph
-    //               vertex is not null
-    //Adds vertex to this graph
-    boolean hasVertex(T vertex);
+    void performDescend();
 
-    //Returns true if this graph contains vertex; otherwise returns false
-    boolean addEdge(T fromVertex, T toVertex);
+    void performAscend();
 
-    //Adds an edge from fromVertex totoVertex
-    //QueueInterface<T> getToVertices(T vertex);
 
-    //Returns a queue of the vertices that vertex is adjacent to
-    void clearMarks();
 
-    //unmarks all vertices.
-    void markVertex(T vertex);
-
-    //marks vertex
-    boolean isMarked(T vertex);
-
-    //returns true if vertex is marked; otherwise returns false.
-    T getUnmarked();
-    //Returns an unmarked vertex if any exist; otherwise returns null
 }

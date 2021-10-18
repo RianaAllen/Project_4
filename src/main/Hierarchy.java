@@ -4,15 +4,9 @@ package main;
 //should override toString method.
 
 public class Hierarchy<T> implements DFSActions<T>{
-
     @Override
-    public boolean isEmpty() {
-        return false;
-    }
+    public void cycleDetected() {
 
-    @Override
-    public boolean isFull() {
-        return false;
     }
 
     @Override
@@ -21,37 +15,12 @@ public class Hierarchy<T> implements DFSActions<T>{
     }
 
     @Override
-    public boolean hasVertex(T vertex) {
-        return false;
-    }
-
-    @Override
-    public boolean addEdge(T fromVertex, T toVertex) {
-        return false;
-    }
-/*
-    @Override
-    public QueueInterface<T> getToVertices(T vertex) {
-        return null;
-    }
-*/
-    @Override
-    public void clearMarks() {
+    public void performDescend() {
 
     }
 
     @Override
-    public void markVertex(T vertex) {
+    public void performAscend() {
 
-    }
-
-    @Override
-    public boolean isMarked(T vertex) {
-        return false;
-    }
-
-    @Override
-    public T getUnmarked() {
-        return null;
     }
 }
