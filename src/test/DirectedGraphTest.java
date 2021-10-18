@@ -22,4 +22,12 @@ public class DirectedGraphTest {
         assertEquals(1, graph.rowIndex("Atlanta"));
         assertEquals(2, graph.rowIndex("Austin"));
     }
+
+    @Test()
+    public void testAddEdges () {
+        DirectedGraph<String> graph = new DirectedGraph<>();
+        graph.addVertex("Denver");
+        graph.addEdge("Denver", "Austin");
+        assertEquals(0,graph.columnIndex("Denver","Austin"));
+    }
 }

@@ -18,7 +18,7 @@ public class DirectedGraph<T> {
    private List<Boolean> marks; //marks[i] is mark for vertices[i]
 
    public DirectedGraph() {
-    // Instantiates a graph with capacity DEFCAP vertices.
+    // Instantiates a graph.
     vertices = new ArrayList<>();
     marks = new ArrayList<>();
     edges = new ArrayList<>();
@@ -26,6 +26,8 @@ public class DirectedGraph<T> {
 
    public void addVertex(T vertex) {
      vertices.add(vertex);
+       List<T> newEdge = new ArrayList<>();
+       edges.add(newEdge);
    }
 
    public int rowIndex(T vertex) {
