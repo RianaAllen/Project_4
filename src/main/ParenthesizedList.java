@@ -7,26 +7,33 @@
 package main;
 
 public class ParenthesizedList<T> implements DFSActions<T> {
+    StringBuilder parenthesize = new StringBuilder();
+    int level = 0;
+
+    @Override
+    public String toString() {
+        return parenthesize.toString();
+    }
+
     @Override
     public void cycleDetected() {
-
+        parenthesize.append("*");
     }
 
     @Override
     public void addVertexAction(T vertex) {
-        String pl = null;
-
-
+        parenthesize.append(" " + vertex + " " );
     }
 
     @Override
     public void performDescend() {
+        parenthesize.append("(");
 
     }
 
     @Override
     public void performAscend() {
-
+        parenthesize.append(")");
     }
 }
 
