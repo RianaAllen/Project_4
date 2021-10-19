@@ -1,12 +1,14 @@
+//Riana Franklin Allen
+//CMSC 350 6383 Data Structures and Analysis
+//Oct 12, 2021
+
 package test;
 
 import main.DirectedGraph;
 import main.Main;
 import org.junit.Test;
-
 import java.io.*;
 import java.net.URL;
-
 import static org.junit.Assert.assertEquals;
 
 public class DirectedGraphTest {
@@ -70,6 +72,4 @@ public class DirectedGraphTest {
         testGraph.addEdge("ClassI", "ClassC");
         assertEquals(testGraph, graph);
     }
-
-
 }

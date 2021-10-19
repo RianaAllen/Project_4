@@ -1,4 +1,4 @@
-package main;//Riana Franklin Allen
+//Riana Franklin Allen
 //CMSC 350 6383 Data Structures and Analysis
 //Oct 12, 2021
 //Should be a generic class, whose generic parameter specifies the type of the labels that are associated with the
@@ -6,7 +6,7 @@ package main;//Riana Franklin Allen
 //from figure 10.7. Unlike the graph, however, this graph will not be a weighted graph.
 //Should contain a method that allows the edges to be added to the graph, which is how the main method will initially
 //build the graph. It should also contain a method that performs a depth-first search of that graph.
-
+package main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,6 +78,10 @@ public class DirectedGraph<T> {
         vertices.add(fromVertex);
         List<T> newEdge = new ArrayList<>();
         newEdge.add(toVertex);
+        row = rowIndex(toVertex);
+        if (row == -1) {
+            vertices.add(toVertex);
+        }
         edges.add(newEdge);
     }
     if (column == -1){
@@ -92,7 +96,7 @@ public class DirectedGraph<T> {
 
     public void depth_first_search (T vertex, DFSActions actions) {
 
-        if (marks.get(vertex)){
+        if (marks.getOrDefault(vertex, false)){
         //perform cycle detected action
             actions.cycleDetected();
             return;
@@ -103,7 +107,8 @@ public class DirectedGraph<T> {
         int rowIndex = rowIndex(vertex);
         edges.size();
         for (int i = 0; i < edges.size(); i++){
-            T toEdge = edges.get(rowIndex).get(i);
+            List<T> ts = edges.get(rowIndex);
+            T toEdge = ts.get(i);
             depth_first_search(toEdge, actions);
         }
         actions.performAscend();

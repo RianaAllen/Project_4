@@ -1,6 +1,11 @@
+//Riana Franklin Allen
+//CMSC 350 6383 Data Structures and Analysis
+//Oct 12, 2021
+//Implement the interface.ParenthesizedList should produce an alternate representation
+// that is also returned by toString method.
+
 package main;
 
-//ParenthesizedList should produce an alternate representation that is also returned by toString method.
 public class ParenthesizedList<T> implements DFSActions<T> {
     @Override
     public void cycleDetected() {
@@ -9,6 +14,8 @@ public class ParenthesizedList<T> implements DFSActions<T> {
 
     @Override
     public void addVertex(T vertex) {
+        String pl = null;
+
 
     }
 

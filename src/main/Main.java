@@ -1,9 +1,9 @@
-package main;//Riana Franklin Allen
+//Riana Franklin Allen
 //CMSC 350 6383 Data Structures and Analysis
 //Oct 12, 2021
 //Allow a user to select the input file from the default directory by using the JFileChooser class. It should then add
 //the edges to a directed graph that defines these class dependencies.
-
+package main;
 import javax.swing.*;
 import java.io.*;
 import java.util.StringTokenizer;

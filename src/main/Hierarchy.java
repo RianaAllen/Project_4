@@ -1,7 +1,10 @@
-package main;
-//two additional classes that both implement the interface.
-//Hierarchy, should produce a hierarchical representation of the class dependencies
+//Riana Franklin Allen
+//CMSC 350 6383 Data Structures and Analysis
+//Oct 12, 2021
+//Implement the interface. Hierarchy, should produce a hierarchical representation of the class dependencies
 //should override toString method.
+
+package main;
 
 public class Hierarchy<T> implements DFSActions<T>{
     @Override
@@ -11,6 +14,8 @@ public class Hierarchy<T> implements DFSActions<T>{
 
     @Override
     public void addVertex(T vertex) {
+        String hierarchy = null;
+        vertex.toString();
 
     }
 
