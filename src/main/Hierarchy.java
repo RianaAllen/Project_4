@@ -7,25 +7,39 @@
 package main;
 
 public class Hierarchy<T> implements DFSActions<T>{
-    @Override
-    public void cycleDetected() {
+    StringBuilder hierarchy = new StringBuilder();
+    int level = 0;
 
+    @Override
+    public String toString() {
+        return hierarchy.toString();
     }
 
     @Override
-    public void addVertex(T vertex) {
-        String hierarchy = null;
-        vertex.toString();
+    public void cycleDetected() {
+        hierarchy.append(" *");
+    }
+
+    @Override
+    public void addVertexAction(T vertex) {
+        hierarchy.append("\n");
+        for (int i = 0; i < level; i++){
+            hierarchy.append("    ");
+        }
+        hierarchy.append(vertex.toString());
 
     }
 
     @Override
     public void performDescend() {
-
+        ++level;
     }
 
     @Override
     public void performAscend() {
+        --level;
 
     }
+
+
 }

@@ -13,7 +13,7 @@ public interface DFSActions<T> {
     void cycleDetected();
     //Returns an unmarked vertex if any exist; otherwise returns null
 
-    void addVertex(T vertex);
+    void addVertexAction(T vertex);
 
     void performDescend();
 

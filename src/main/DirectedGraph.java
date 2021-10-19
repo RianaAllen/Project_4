@@ -76,16 +76,21 @@ public class DirectedGraph<T> {
     int column = columnIndex(fromVertex, toVertex);
     if (row == -1){
         vertices.add(fromVertex);
-        List<T> newEdge = new ArrayList<>();
-        newEdge.add(toVertex);
+        List<T> listOfEdges = new ArrayList<>();
+        listOfEdges.add(toVertex);
         row = rowIndex(toVertex);
         if (row == -1) {
             vertices.add(toVertex);
+            List<T> secondListEdges = new ArrayList<>();
+            edges.add(secondListEdges);
         }
-        edges.add(newEdge);
+        edges.add(listOfEdges);
     }
     if (column == -1){
         List<T> toEdges = edges.get(row);
+        vertices.add(toVertex);
+        List<T> thirdListEdges = new ArrayList<>();
+        edges.add(thirdListEdges);
         toEdges.add(toVertex);
     }
    }
@@ -101,13 +106,13 @@ public class DirectedGraph<T> {
             actions.cycleDetected();
             return;
         }
-        actions.addVertex(vertex);
+        actions.addVertexAction(vertex);
         marks.put(vertex, true);
         actions.performDescend();
         int rowIndex = rowIndex(vertex);
         edges.size();
-        for (int i = 0; i < edges.size(); i++){
-            List<T> ts = edges.get(rowIndex);
+        List<T> ts = edges.get(rowIndex);
+        for (int i = 0; i < ts.size(); i++){
             T toEdge = ts.get(i);
             depth_first_search(toEdge, actions);
         }

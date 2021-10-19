@@ -9,7 +9,7 @@ import java.io.*;
 import java.util.StringTokenizer;
 
 public class Main {
-    public Main() throws IOException {
+    public Main() {
         //Allows the user to select the input file from the default directory by using an object of the JFileChooser class.
         JFileChooser jfc = new JFileChooser();
         File file = jfc.getSelectedFile();

@@ -13,7 +13,7 @@ public class ParenthesizedList<T> implements DFSActions<T> {
     }
 
     @Override
-    public void addVertex(T vertex) {
+    public void addVertexAction(T vertex) {
         String pl = null;
 
 

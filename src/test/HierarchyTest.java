@@ -20,7 +20,30 @@ public class HierarchyTest {
         DirectedGraph<String> graph = Main.fileReader(file);
         Hierarchy<String> test = new Hierarchy<>();
         graph.depth_first_search("Denver", test);
-        String hierarchyString = "Denver/n/tAustin";
+        String hierarchyString = "Denver\n"
+                               + "    Austin\n";
+        assertEquals(hierarchyString, test.toString());
+    }
+
+    @Test()
+    public void testLongString() throws IOException {
+        String path = "src/test/resources/ClassDependencies.txt";
+        File file = new File(path);
+        DirectedGraph<String> graph = Main.fileReader(file);
+        Hierarchy<String> test = new Hierarchy<>();
+        graph.depth_first_search("ClassA", test);
+        String hierarchyString = "\nClassA\n" +
+                                 "    ClassC *\n" +
+                                 "    ClassE\n" +
+                                 "        ClassB\n" +
+                                 "            ClassD\n" +
+                                 "            ClassG\n" +
+                                 "        ClassF\n" +
+                                 "        ClassH\n" +
+                                 "    ClassJ\n" +
+                                 "        ClassB\n" +
+                                 "            ClassD\n" +
+                                 "            ClassG";
         assertEquals(hierarchyString, test.toString());
     }
 }
