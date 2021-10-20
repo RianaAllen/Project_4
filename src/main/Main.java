@@ -9,18 +9,36 @@ import java.io.*;
 import java.util.StringTokenizer;
 
 public class Main {
-    public Main() {
+    public static void main(String[] args) throws IOException {
         //Allows the user to select the input file from the default directory by using an object of the JFileChooser class.
         JFileChooser jfc = new JFileChooser();
         File file = jfc.getSelectedFile();
-        //int returnValue = jfc.showOpenDialog(null);
-    }
-
-    public static DirectedGraph<String> fileReader(File file) throws IOException {
+        int returnValue = jfc.showOpenDialog(null);
         FileReader fileToRead = new FileReader(file);
         BufferedReader br = new BufferedReader(fileToRead);
         String eachLine = br.readLine();
         DirectedGraph<String> graph = new DirectedGraph();
+        while (eachLine != null) {
+            StringTokenizer tokenLine = new StringTokenizer(eachLine, " ", false);
+            if (tokenLine.hasMoreElements()) {
+                String token = tokenLine.nextToken();
+                String vertex = token;
+                graph.addVertex(vertex);
+                while (tokenLine.hasMoreElements()) {
+                    //    get the next token, add edges
+                    token = tokenLine.nextToken();
+                    graph.addEdge(vertex, token);
+                }
+            }
+            eachLine = br.readLine();
+        }
+        System.out.println(graph);
+    }
+
+    public static DirectedGraph<String> fileReader(File file) throws IOException {FileReader fileToRead = new FileReader(file);
+        BufferedReader br = new BufferedReader(fileToRead);
+        String eachLine = br.readLine();
+        DirectedGraph graph = new DirectedGraph();
         while (eachLine != null) {
             StringTokenizer tokenLine = new StringTokenizer(eachLine, " ", false);
             if (tokenLine.hasMoreElements()) {

@@ -1,14 +1,14 @@
 //Riana Franklin Allen
 //CMSC 350 6383 Data Structures and Analysis
 //Oct 12, 2021
-//Implement the interface.ParenthesizedList should produce an alternate representation
+//Implement the interface. ParenthesizedList should produce an alternate representation
 // that is also returned by toString method.
 
 package main;
 
 public class ParenthesizedList<T> implements DFSActions<T> {
     StringBuilder parenthesize = new StringBuilder();
-    int level = 0;
+    boolean descend = true;
 
     @Override
     public String toString() {
@@ -22,13 +22,16 @@ public class ParenthesizedList<T> implements DFSActions<T> {
 
     @Override
     public void addVertexAction(T vertex) {
+        if (descend == true){
+            parenthesize.append("(");
+            descend = false;
+        }
         parenthesize.append(" " + vertex + " " );
     }
 
     @Override
     public void performDescend() {
-        parenthesize.append("(");
-
+        descend = true;
     }
 
     @Override
